@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://b7ai21jrx26r5"]
+
+[ext_resource type="FontFile" uid="uid://dpwekxpdgnxbm" path="res://fonts/Xolonium-Regular.ttf" id="1_13xwv"]
+[ext_resource type="Script" path="res://Hud.cs" id="1_tne2e"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_j7ikh"]
+action = &"StartGame"
+
+[sub_resource type="Shortcut" id="Shortcut_7iafi"]
+events = [SubResource("InputEventAction_j7ikh")]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_tne2e")
+
+[node name="ScoreLabel" type="Label" parent="."]
+offset_left = 208.0
+offset_right = 253.0
+offset_bottom = 81.0
+theme_override_fonts/font = ExtResource("1_13xwv")
+theme_override_font_sizes/font_size = 64
+text = "0"
+
+[node name="Message" type="Label" parent="."]
+offset_left = 80.0
+offset_top = 192.0
+offset_right = 440.0
+offset_bottom = 354.0
+theme_override_fonts/font = ExtResource("1_13xwv")
+theme_override_font_sizes/font_size = 64
+text = "Dodge the
+ Creeps!"
+
+[node name="StartButton" type="Button" parent="."]
+offset_left = 104.0
+offset_top = 496.0
+offset_right = 360.0
+offset_bottom = 582.0
+theme_override_fonts/font = ExtResource("1_13xwv")
+theme_override_font_sizes/font_size = 64
+shortcut = SubResource("Shortcut_7iafi")
+text = "Start"
+
+[node name="MessageTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="pressed" from="StartButton" to="." method="OnStartButtonPressed"]
+[connection signal="timeout" from="MessageTimer" to="." method="OnMessageTimerTimeout"]
